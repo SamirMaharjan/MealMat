@@ -18,6 +18,8 @@ class AuthController extends Controller
      */
     public function userRegister(Request $request)
     {
+        // log::info($request->all());
+        
         if ($request->isMethod('POST')) {
             $data = $request->all();
             $rules = [
