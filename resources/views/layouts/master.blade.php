@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> Career In Motions | Dashboard</title>
+    <title> MealMate | Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta content="Career In Motions" name="description" />
+    <meta content="MealMate" name="description" />
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/brand-logo/logo.jpg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('assets/images/mealmate.jpeg') }}" type="image/x-icon">
     @include('layouts.head-css')
 </head>
 

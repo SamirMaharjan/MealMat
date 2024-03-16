@@ -32,44 +32,6 @@
                             class="align-self-center menu-icon"></i><span>Products</span></a>
                 
                 </li>
-                <li>
-                    <a href="javascript: void(0);"><i data-feather="briefcase"
-                            class="align-self-center menu-icon"></i><span>Jobs</span><span class="menu-arrow"><i
-                                class="mdi mdi-chevron-right"></i></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                       
-                        <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="ti-control-record"></i>Show All Jobs</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="ti-control-record"></i>Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="ti-control-record"></i>Skills Category</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{#"><i
-                                    class="ti-control-record"></i>Questions</a></li>
-                       
-                    </ul>
-                </li>
-
-               
-                <li>
-                    <a href="#"><i data-feather="user-plus"
-                            class=" align-self-center menu-icon "></i><span>Candidates</span><span
-                            class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                    
-                </li>
-                <li>
-                    <a href="#"><i data-feather="shield-off"
-                            class="align-self-center menu-icon "></i><span>HIM SubUser Management</span></a>
-                    
-                </li>
-                <hr class="hr-dashed hr-menu">
-                <li class="menu-label my-2">Components & Extra</li>
-
-                {{-- <li>
-                    <a href="javascript: void(0);"><i data-feather="settings"
-                            class="align-self-center menu-icon"></i><span>Settings</span></a>
-                    
-                </li> --}}
 
                 
             </ul>
