@@ -24,35 +24,35 @@
                 <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown"
                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <i data-feather="bell" class="align-self-center topbar-icon"></i>
-                    <span class="badge bg-danger rounded-pill noti-icon-badge">{{ count($unread_notification) }}</span>
+                    <span class="badge bg-danger rounded-pill noti-icon-badge">1</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
 
                     <h6
                         class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
                         Notifications 
-                        @if ( count($unread_notification)>0)
-                        <span class="badge bg-primary rounded-pill">{{ count($unread_notification) }}</span>
-                        @endif
+                      
+                        <span class="badge bg-primary rounded-pill">1</span>
+                      
                         
 
                     </h6>
                     <div class="notification-menu" data-simplebar>
-                       @foreach ($unread_notification as $notification)
+                     
                             <!-- item-->
-                        <a href="{{ $notification->data['url']? $notification->data['url']:'#' }}" data-id="{{ $notification->id }}" class="dropdown-item py-3 notification_link">
+                        <a href="#" data-id="1" class="dropdown-item py-3 notification_link">
                             {{-- <small class="float-end text-muted ps-2">40 min ago</small> --}}
                             <div class="media">
                                 <div class="avatar-md bg-soft-primary">
                                     <i data-feather="users" class="align-self-center icon-xs"></i>
                                 </div>
                                 <div class="media-body align-self-center ms-2 text-wrap">
-                                    <h6 class="my-0 fw-normal text-dark"> {{ $notification->data['title'] }}</h6>
-                                    <small class="text-muted mb-0">{{ $notification->data['body'] }}</small>
+                                    <h6 class="my-0 fw-normal text-dark">Notification Title</h6>
+                                    <small class="text-muted mb-0">Notification Body</small>
                                 </div><!--end media-body-->
                             </div><!--end media-->
                         </a><!--end-item-->
-                       @endforeach
+                    
                        
                         
                     </div>
@@ -67,7 +67,7 @@
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown"
                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="ms-1 nav-user-name hidden-sm">
-                        {{ $auth_user->first_name?$auth_user->first_name.' '.$auth_user->last_name:$auth_user->org_name }}</span>
+                        Admin User</span>
                     <img src="{{ isset(Auth::user()->avatar) && Auth::user()->avatar != '' ? asset(Auth::user()->avatar) : asset('/assets/images/users/user-1.jpg') }}"
                         alt="profile-user" class="rounded-circle thumb-xs" />
                 </a>
@@ -81,7 +81,7 @@
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> <span
                             key="t-logout">Logout</span></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="1" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>

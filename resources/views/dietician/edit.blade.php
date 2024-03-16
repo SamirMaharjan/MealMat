@@ -11,13 +11,13 @@
     HIM
 @endslot
 @slot('li_2')
-    User
+    Dietician
 @endslot
 @slot('li_3')
     Update
 @endslot
 @slot('title')
-    User
+    Dietician
 @endslot
 @endcomponent
    

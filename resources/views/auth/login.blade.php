@@ -43,7 +43,8 @@
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
-                                    <form action="{{ route('login') }}" method="post">
+                                    <form action="{{ route('post_login') }}" method="post">
+                                    {{-- <form action="#" method="post"> --}}
                                         @csrf
                                         <div class="row ">
                                             <div class="col-lg-12">

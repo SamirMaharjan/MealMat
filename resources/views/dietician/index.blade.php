@@ -19,13 +19,13 @@
             HIM
         @endslot
         @slot('li_2')
-            Client Management
+        Dietician Management
         @endslot
         @slot('li_3')
-            Show All Clients
+            Show All Dietician
         @endslot
         @slot('title')
-            Client Management
+        Dietician Management
         @endslot
     @endcomponent
 
@@ -81,7 +81,7 @@
                                         
                                         </td>
                                         <td>
-                                             <a href="{{route('edit-user',$item->id)}}"
+                                             <a href="{{route('edit-dietician',$item->id)}}"
                                                 class="btn btn-sm btn-primary text-white"><i
                                                     class="fas fa-pencil-alt me-1"></i> Edit</a>
                                             <a class="client-delete btn btn-sm btn-danger text-white"><i

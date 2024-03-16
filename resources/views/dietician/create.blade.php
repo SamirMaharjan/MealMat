@@ -11,17 +11,17 @@
             HIM
         @endslot
         @slot('li_2')
-            User
+        Dietician
         @endslot
         @slot('li_3')
             Create
         @endslot
         @slot('title')
-            User
+        Dietician
         @endslot
     @endcomponent
 
-    <form action="{{ route('store-user') }}" id="myForm" method="post" enctype="multipart/form-data" novalidate>
+    <form action="{{ route('store-dietician') }}" id="myForm" method="post" enctype="multipart/form-data" novalidate>
         @csrf
         {{-- <input type="hidden" name="id" value="{{ base64_encode($user->id) }}"> --}}
         <div class="row p-3">

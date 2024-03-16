@@ -16,15 +16,9 @@
 <body>
   
 
-    @if ($auth_user->hasRole('SuperAdmin'))
+
         @include('layouts.sidebar')
-    @elseif ($auth_user->hasRole('ClientAdmin'))
-        @include('layouts.client_sidebar')
-    @elseif ($auth_user->hasRole('HIMSubUser'))
-        @include('layouts.admin_user_sidebar')
-    @elseif ($auth_user->hasRole('StageUser'))
-        @include('layouts.stage_user_sidebar')
-    @endif
+
     <div class="toast bg-danger d-none" id="toast-content" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header bg-danger ">
            <h5 class="text-light">  </h5>
@@ -94,7 +88,7 @@
                     }
                 });
                 $.ajax({
-                    url: "{{ route('read_notification') }}",
+                    url: "#",
                     type: "POST",
                     data: {
 

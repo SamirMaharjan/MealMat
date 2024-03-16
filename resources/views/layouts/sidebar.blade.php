@@ -23,22 +23,14 @@
                     </ul> --}}
                 </li>
                 <li>
-                    <a href="{{ route('subscription') }}"> <i data-feather="calendar"
-                            class="align-self-center menu-icon"></i><span>Subscription</span></a>
+                    <a href="{{route('index-dietician')}}"> <i data-feather="calendar"
+                            class="align-self-center menu-icon"></i><span>Dietician</span></a>
                    
                 </li>
                 <li>
-                    <a href="javascript: void(0);"> <i data-feather="users"
-                            class="align-self-center menu-icon"></i><span>Client management</span><span class="menu-arrow"><i
-                                class="mdi mdi-chevron-right"></i></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="{{ route("client") }}"><i
-                                    class="ti-control-record"></i>Show All</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route("organizationtype") }}"><i
-                                    class="ti-control-record"></i>Organization Type</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('specialization') }}"><i
-                                    class="ti-control-record"></i>Specialization</a></li>
-                    </ul>
+                    <a href="#"> <i data-feather="users"
+                            class="align-self-center menu-icon"></i><span>Client management</span></a>
+                
                 </li>
                 <li>
                     <a href="javascript: void(0);"><i data-feather="briefcase"
@@ -46,13 +38,13 @@
                                 class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                        
-                        <li class="nav-item"><a class="nav-link" href="{{ route('jobs') }}"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="ti-control-record"></i>Show All Jobs</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('skills') }}"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="ti-control-record"></i>Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('skill_category') }}"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="ti-control-record"></i>Skills Category</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('question') }}"><i
+                        <li class="nav-item"><a class="nav-link" href="{#"><i
                                     class="ti-control-record"></i>Questions</a></li>
                        
                     </ul>
@@ -60,13 +52,13 @@
 
                
                 <li>
-                    <a href="{{ route("candidates" )}}"><i data-feather="user-plus"
+                    <a href="#"><i data-feather="user-plus"
                             class=" align-self-center menu-icon "></i><span>Candidates</span><span
                             class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                     
                 </li>
                 <li>
-                    <a href="{{ route('admin_user') }}"><i data-feather="shield-off"
+                    <a href="#"><i data-feather="shield-off"
                             class="align-self-center menu-icon "></i><span>HIM SubUser Management</span></a>
                     
                 </li>

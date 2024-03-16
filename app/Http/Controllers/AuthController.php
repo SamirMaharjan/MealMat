@@ -25,14 +25,12 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-
             $user = Auth::user();
-            $user->last_used_at = Carbon::now();
-            $user1 = User::find($user->id);
-            $user1->timestamps = false;
-            $user1->last_used_at = Carbon::now();
-            $user1->save();
-            if ($user->hasRole('SuperAdmin')) {
+            if ($user->is_super_admin) {
+                $user1 = User::find($user->id);
+                $user1->timestamps = false;
+                $user1->last_used_at = Carbon::now();
+                $user1->save();
                 return redirect()->intended('/')
                     ->withSuccess('Signed in');
             } else {
