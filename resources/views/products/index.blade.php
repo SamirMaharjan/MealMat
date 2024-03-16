@@ -8,7 +8,7 @@
 @section('create_button')
     <li class="creat-btn">
         <div class="nav-link">
-            <a class=" btn btn-sm btn-soft-primary" href="{{route('create-user')}}" role="button"><i
+            <a class=" btn btn-sm btn-soft-primary" href="{{route('create-product')}}" role="button"><i
                     class="fas fa-plus me-2"></i>New Client</a>
         </div>
     </li>
@@ -19,13 +19,13 @@
             HIM
         @endslot
         @slot('li_2')
-        Dietician Management
+        Products Management
         @endslot
         @slot('li_3')
-            Show All Dietician
+            Show All Products
         @endslot
         @slot('title')
-        Dietician Management
+        Products Management
         @endslot
     @endcomponent
 
@@ -50,36 +50,27 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="border-top-0">Client Name</th>
-                                    <th class="border-top-0">Email</th>
-                                    <th class="border-top-0">Phone</th>
-                                    <th class="border-top-0">Expiry Date</th>
-                                    <th class="border-top-0">Status</th>
+                                    <th class="border-top-0"> Name</th>
+                                    <th class="border-top-0">Price</th>
+                                    <th class="border-top-0">Description</th>
+                                    
                                     <th class="border-top-0">Action</th>
                                 </tr><!--end tr-->
                             </thead>
                             <tbody>
-                                @foreach ($client as $item)
+                                @foreach ($products as $item)
                                     <tr data-id="{{ $item->id }}">
                                         <td>
                                            
 
                                             {{ $item->name??$item->first_name." ".$item->last_name }}
                                         </td>
-                                        <td> {{ $item->email }}</td>
-                                        <td>{{ $item->phone??'N/A' }}</td>
-                                        <td>{{ $item->created_at->format('d-m-Y')}}</td>
+                                        <td> {{ $item->price }}</td>
+                                        <td class="text-wrap">{{ $item->description??'N/A' }}</td>
+                                     
 
                                         
-                                        <td>
-                                       
-                                            <span class="badge badge-soft-danger">Expired( 2 days)</span>
-                                            
-                                      
-                                            
-                                            
-                                        
-                                        </td>
+                                     
                                         <td>
                                              <a href="{{route('edit-dietician',$item->id)}}"
                                                 class="btn btn-sm btn-primary text-white"><i

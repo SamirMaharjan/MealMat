@@ -24,7 +24,7 @@ class DieticianController extends Controller
             $user = $this->user;
             // dd($user);
             if ($user->is_super_admin) {
-                $client = User::where('is_doctor', 1)->orderBy('created_at', 'desc')->get();
+                $client = User::where('is_dietician', 1)->orderBy('created_at', 'desc')->get();
                 // dd($client);
                 return view('dietician.index', compact('client'));
             } else {
@@ -40,7 +40,7 @@ class DieticianController extends Controller
 
     public function create()
     {
-        return view('client.create');
+        return view('dietician.create');
     }
     public function store(Request $request)
     {
@@ -60,11 +60,12 @@ class DieticianController extends Controller
             'email' => $request->email,
             'phone' => $request->contact,
             'password' => Hash::make($request->password),
-            'is_user' => 1,
+            'is_user' => 0,
+            'is_dietician' => 1,
         ]);
 
 
-        return redirect()->route('index')->with('success', 'Dietician Created SuccessFully');
+        return redirect()->route('index-dietician')->with('success', 'Dietician Created SuccessFully');
     }
     public function edit($id)
     {

@@ -3,7 +3,7 @@
         <div class="brand">
             <a href="/" class="logo">
                 <span>
-                    <img src="{{ URL::asset('assets/images/brand-logo/logo.jpg') }}" alt="logo-small" class="logo-sm" style="height: 80px">
+                    <img src="{{ URL::asset('assets/images/mealmate.jpeg') }}" alt="logo-small" class="logo-sm" style="height: 80px">
                 </span>
                 
             </a>
@@ -28,8 +28,8 @@
                    
                 </li>
                 <li>
-                    <a href="#"> <i data-feather="users"
-                            class="align-self-center menu-icon"></i><span>Client management</span></a>
+                    <a href="{{route('index-product')}}"> <i data-feather="users"
+                            class="align-self-center menu-icon"></i><span>Products</span></a>
                 
                 </li>
                 <li>

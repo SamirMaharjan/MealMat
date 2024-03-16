@@ -21,7 +21,7 @@
 @endslot
 @endcomponent
    
-    <form action="{{route('update-user')}}" id="myForm" method="post" enctype="multipart/form-data" novalidate>
+    <form action="{{route('update-product')}}" id="myForm" method="post" enctype="multipart/form-data" novalidate>
         @csrf
         <input type="hidden" name="id" value="{{ base64_encode($user->id) }}">
         <div class="row p-3">
@@ -38,15 +38,14 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="form-label">First Name</label>
-                                            
-                                                <input required type="text" name="first_name" class="form-control"
-                                                    parsley-type="text" placeholder="Enter First Name"
-                                                    value="{{ $user->first_name }}">
+                                            <label class="form-label"> Name</label>
 
-                                         
+                                            <input required type="text" name="name" class="form-control"
+                                                parsley-type="text" placeholder="Enter  Name" value="{{$user->name}}">
+
+
                                             <span class="text-danger">
-                                                @error('first_name')
+                                                @error('name')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
@@ -54,15 +53,14 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="form-label">Last Name</label>
-                                          
-                                                <input required type="text" name="last_name" class="form-control"
-                                                    parsley-type="text" placeholder="Enter Last Name"
-                                                    value="{{ $user->last_name }}">
+                                            <label class="form-label">price</label>
 
-                                           
+                                            <input required type="text" name="price" class="form-control"
+                                                parsley-type="text" placeholder="Enter  price" value="{{$user->price}}">
+
+
                                             <span class="text-danger">
-                                                @error('last_name')
+                                                @error('price')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
@@ -71,100 +69,46 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label">Email Address</label>
-                                    
-                                        <input required type="email" name="email" class="form-control" parsley-type="text"
-                                            placeholder="Enter Email Address" value="{{ $user->email }}">
+                                    <label class="form-label">Description</label>
 
-                                    
+                                    <textarea required type="text" name="description" class="form-control" parsley-type="text"
+                                        placeholder="Description">{{$user->description}}</textarea>
+
+
                                     <span class="text-danger">
-                                        @error('email')
+                                        @error('description')
                                             {{ $message }}
                                         @enderror
                                     </span>
                                 </div>
-
-
                                 <div class="form-group">
-                                    <label class="form-label">Contact</label>
-                                    
-                                        <input required type="text" name="phone" class="form-control" parsley-type="text"
-                                            placeholder="923 *** ****" value="{{ $user->phone }}">
+                                    <label class="form-label">Category</label>
 
-                                    
+                                    <select class="select2" name="goal" id="">
+                                        <option value="weight gain" {{$user->goal=="weight gain"?'selected':''}}>Weight Gain</option>
+                                        <option value="weight loss" {{$user->goal=="weight loss"?'selected':''}}>Weight Loss</option>
+                                        <option value="weight maintain"{{$user->goal=="weight maintain"?'selected':''}}>Weight Maintain</option>
+                                    </select>
+
+
                                     <span class="text-danger">
-                                        @error('phone')
+                                        @error('description')
                                             {{ $message }}
                                         @enderror
                                     </span>
                                 </div>
-                                <a class=" btn btn-sm btn-soft-success" role="button" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModalLarge"><i class="fas fa-plus me-2"></i>Change Password</a>
+
+
+                             
+
+
 
                             </div><!-- end col -->
-                            <div class="modal fade bd-example-modal-lg" id="exampleModalLarge" tabindex="-1" role="dialog"
-                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
 
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div><!--end modal-header-->
-                                        <div class="modal-body">
-
-
-                                            <fieldset>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label class="form-label">Password</label>
-                                                            
-                                                                <input type="password" name="password" id="password" class="form-control"
-                                                                   placeholder="password" value="" autocomplete="off">
-
-                                                            
-                                                            <span class="text-danger">
-                                                                @error('password')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label class="form-label">Confirm Password</label>
-                                                            
-                                                                <input  type="password" name="password_confirmation"
-                                                                    class="form-control" parsley-type="password"
-                                                                    placeholder="confirm password"  autocomplete="off">
-
-                                                            
-                                                            <span class="text-danger">
-                                                                @error('password')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-
-
-
-                                        </div><!--end modal-body-->
-
-                                    </div><!--end modal-content-->
-                                </div><!--end modal-dialog-->
-                            </div><!--end modal-->
-                            <span class="text-danger">
-                                @error('password')
-                                    {{ $message }}
-                                @enderror
-                            </span>
+                        
                         </div><!-- end row -->
 
-                        <button class="btn btn-primary text-white" type="submit">Update Sub User</button>
+                        <button class="btn btn-primary text-white" type="submit">Create Product</button>
                     </div><!-- end card-body -->
 
                 </div> <!-- end card -->

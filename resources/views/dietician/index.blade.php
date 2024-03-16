@@ -8,8 +8,8 @@
 @section('create_button')
     <li class="creat-btn">
         <div class="nav-link">
-            <a class=" btn btn-sm btn-soft-primary" href="{{route('create-user')}}" role="button"><i
-                    class="fas fa-plus me-2"></i>New Client</a>
+            <a class=" btn btn-sm btn-soft-primary" href="{{route('create-dietician')}}" role="button"><i
+                    class="fas fa-plus me-2"></i>New dietician</a>
         </div>
     </li>
 @endsection

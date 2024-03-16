@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DieticianController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
 Route::post('/login', [AuthController::class,'post_login'])->name('post_login');
 
 
@@ -33,4 +34,11 @@ Route::get('/create-dietician', [DieticianController::class,'create'])->name('cr
 Route::get('/edit-dietician/{id}', [DieticianController::class,'edit'])->name('edit-dietician');
 Route::post('/update-dietician', [DieticianController::class,'update'])->name('update-dietician');
 Route::post('/store-dietician', [DieticianController::class,'store'])->name('store-dietician');
+
+
+Route::get('/product', [ProductController::class,'index'])->name('index-product');
+Route::get('/create-product', [ProductController::class,'create'])->name('create-product');
+Route::get('/edit-product/{id}', [ProductController::class,'edit'])->name('edit-product');
+Route::post('/update-product', [ProductController::class,'update'])->name('update-product');
+Route::post('/store-product', [ProductController::class,'store'])->name('store-product');
 

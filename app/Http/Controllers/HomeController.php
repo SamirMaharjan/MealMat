@@ -61,7 +61,7 @@ class HomeController extends Controller
             'phone' => $request->contact,
             'password' => Hash::make($request->password),
             'is_user' => 1,
-            'is_doctor' => 0,
+            'is_dietician' => 0,
         ]);
 
 

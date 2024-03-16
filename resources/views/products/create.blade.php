@@ -21,7 +21,7 @@
         @endslot
     @endcomponent
 
-    <form action="{{ route('store-dietician') }}" id="myForm" method="post" enctype="multipart/form-data" novalidate>
+    <form action="{{ route('store-product') }}" id="myForm" method="post" enctype="multipart/form-data" novalidate>
         @csrf
         {{-- <input type="hidden" name="id" value="{{ base64_encode($user->id) }}"> --}}
         <div class="row p-3">
@@ -38,14 +38,14 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="form-label">First Name</label>
+                                            <label class="form-label"> Name</label>
 
-                                            <input required type="text" name="first_name" class="form-control"
-                                                parsley-type="text" placeholder="Enter First Name">
+                                            <input required type="text" name="name" class="form-control"
+                                                parsley-type="text" placeholder="Enter  Name">
 
 
                                             <span class="text-danger">
-                                                @error('first_name')
+                                                @error('name')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
@@ -53,14 +53,14 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="form-label">Last Name</label>
+                                            <label class="form-label">price</label>
 
-                                            <input required type="text" name="last_name" class="form-control"
-                                                parsley-type="text" placeholder="Enter Last Name">
+                                            <input required type="text" name="price" class="form-control"
+                                                parsley-type="text" placeholder="Enter  price">
 
 
                                             <span class="text-danger">
-                                                @error('last_name')
+                                                @error('price')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
@@ -69,78 +69,46 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label">Email Address</label>
+                                    <label class="form-label">Description</label>
 
-                                    <input required type="email" name="email" class="form-control" parsley-type="text"
-                                        placeholder="Enter Email Address">
+                                    <textarea required type="text" name="description" class="form-control" parsley-type="text"
+                                        placeholder="Description"></textarea>
 
 
                                     <span class="text-danger">
-                                        @error('email')
+                                        @error('description')
                                             {{ $message }}
                                         @enderror
                                     </span>
                                 </div>
-
-
                                 <div class="form-group">
-                                    <label class="form-label">Contact</label>
+                                    <label class="form-label">Category</label>
 
-                                    <input required type="text" name="phone" class="form-control" parsley-type="text"
-                                        placeholder="923 *** ****">
+                                    <select class="select2" name="goal" id="">
+                                        <option value="weight gain">Weight Gain</option>
+                                        <option value="weight loss">Weight Loss</option>
+                                        <option value="weight maintain">Weight Maintain</option>
+                                    </select>
 
 
                                     <span class="text-danger">
-                                        @error('phone')
+                                        @error('description')
                                             {{ $message }}
                                         @enderror
                                     </span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Password</label>
-
-                                            <input type="password" name="password" id="password" class="form-control"
-                                                placeholder="password" value="" autocomplete="off">
 
 
-                                            <span class="text-danger">
-                                                @error('password')
-                                                    {{ $message }}
-                                                @enderror
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Confirm Password</label>
-
-                                            <input type="password" name="password_confirmation" class="form-control"
-                                                parsley-type="password" placeholder="confirm password" autocomplete="off">
-
-
-                                            <span class="text-danger">
-                                                @error('password')
-                                                    {{ $message }}
-                                                @enderror
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                             
 
 
 
                             </div><!-- end col -->
 
-                            <span class="text-danger">
-                                @error('password')
-                                    {{ $message }}
-                                @enderror
-                            </span>
+                        
                         </div><!-- end row -->
 
-                        <button class="btn btn-primary text-white" type="submit">Create User</button>
+                        <button class="btn btn-primary text-white" type="submit">Create Product</button>
                     </div><!-- end card-body -->
 
                 </div> <!-- end card -->

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProductController extends Controller
 {
@@ -21,9 +25,9 @@ class ProductController extends Controller
             $user = $this->user;
             // dd($user);
             if ($user->is_super_admin) {
-                $client = User::where('is_doctor', 1)->orderBy('created_at', 'desc')->get();
+                $products = Product::orderBy('created_at', 'desc')->get();
                 // dd($client);
-                return view('dietician.index', compact('client'));
+                return view('products.index', compact('products'));
             } else {
                 Auth::logout();
 
@@ -37,73 +41,64 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('client.create');
+        return view('products.create');
     }
     public function store(Request $request)
     {
         $user = $this->user;
         $request->validate([
             // 'org_name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'phone' => 'required',
-            'password' => 'required|confirmed',
+            // 'email' => 'required|email|unique:users,email',
+            'name' => 'required',
+            'price' => 'required',
+            'goal' => 'required',
+            'description' => 'required',
+            // 'password' => 'required|confirmed',
 
         ]);
-        $new_user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone' => $request->contact,
-            'password' => Hash::make($request->password),
-            'is_user' => 1,
+        $new_user = Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'goal' => $request->goal,
+            'description' => $request->description,
+           
         ]);
 
 
-        return redirect()->route('index')->with('success', 'Dietician Created SuccessFully');
+        return redirect()->route('index-product')->with('success', 'Product Created SuccessFully');
     }
     public function edit($id)
     {
         // $id= base64_decode($id);
-        $user = User::findOrFail($id);
-        return view('dietician.edit', compact('user'));
+        $user = Product::findOrFail($id);
+        return view('products.edit', compact('user'));
     }
     public function update(Request $request)
     {
         // dd($request->all());
         $id = base64_decode($request->id);
-        $user = User::findOrFail($id);
-        if ($user->is_user) {
-            return redirect()->route('index')->with('warning', 'Something went wrong');
-        } else {
-            $request->validate([
-                // 'org_name' => 'required',
-                'email' => 'required|email|unique:users,email,' . $id,
-                'first_name' => 'required',
-                'last_name' => 'required',
-                'phone' => 'required',
+        $product = Product::findOrFail($id);
+   
+        $request->validate([
+            // 'org_name' => 'required',
+            // 'email' => 'required|email|unique:users,email',
+            'name' => 'required',
+            'price' => 'required',
+            'goal' => 'required',
+            'description' => 'required',
+            // 'password' => 'required|confirmed',
 
-            ]);
-            if (isset($request->password)) {
-                $request->validate([
-                    'password' => 'confirmed',
-                ]);
-                $user->update([
-                    'password' => Hash::make($request->password),
-                ]);
-            }
+        ]);
+          
 
-            $user->update([
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'email' => $request->email,
-                'phone' => $request->contact,
-                'is_user' => 0,
-                'is_doctor' => 1,
+            $product->update([
+                'name' => $request->name,
+                'price' => $request->price,
+                'goal' => $request->goal,
+                'description' => $request->description,
             ]);
             // $user->assignRole('HIMSubUser');
-            return redirect()->route('index-dietician')->with('success', 'Dietician Updated SuccessFully');
-        }
+            return redirect()->route('index-product')->with('success', 'Product Updated SuccessFully');
+        
     }
 }

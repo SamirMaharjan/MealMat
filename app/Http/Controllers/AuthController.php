@@ -46,7 +46,7 @@ class AuthController extends Controller
 
         }
 
-        return redirect("login")->with('warning', 'Login details are not valid');
+        return redirect("/")->with('warning', 'Login details are not valid');
     }
 
     public function logout(Request $request)

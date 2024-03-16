@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('price');
-            $table->string('brand');
-            $table->string('description');
+            $table->string('brand')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('goal');
             $table->timestamps();

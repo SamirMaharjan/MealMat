@@ -35,7 +35,7 @@
                                     <div class="text-center">
                                         <a href="index" class="logo logo-admin">
 
-                                            <img src="{{ URL::asset('assets/images/CIM_Logo.svg') }}" height="120"
+                                            <img src="{{ URL::asset('assets/images/mealmate.jpeg') }}" height="120"
                                                 alt="logo" class="auth-logo">
 
                                         </a>
