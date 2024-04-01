@@ -181,7 +181,7 @@ class AuthController extends Controller
 
             if ($userCount > 0) {
                 $user = User::where('access_token', $access_token)->first();
-               $doctor_list = User::where('is_doctor',1)->select('first_name','last_name','email','phone')->get();
+               $doctor_list = User::where('is_dietician',1)->select('first_name','last_name','email','phone')->get();
                $my_doctor = User::where('id', $user->doctor_id)->first();
                 return response()->json(['status' => true, 'doctor_list' => $doctor_list,'my_doctor'=>$my_doctor], 200);
             } else {
