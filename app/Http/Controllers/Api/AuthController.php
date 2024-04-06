@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -189,6 +190,55 @@ class AuthController extends Controller
                 return response()->json(["status" => true, "message" => $message], 201);
             }
         }
+    }
+
+    public function getDoctor(Request $rquest,$id){
+        
+
+        $access_token = $request->header('Authorization');
+        if (empty($access_token)) {
+            $message = "User token is missing in Api header!";
+            return response()->json(["status" => false, "message" => $message], 422);
+        } else {
+            $access_token = str_replace("Bearer ", "", $access_token);
+            $userCount = User::where('access_token', $access_token)->count();
+
+            if ($userCount > 0) {
+                $user = User::where('access_token', $access_token)->first();
+               $doctor_list = User::where('is_dietician',1)->select('id','first_name','last_name','email','phone')->get();
+               $doctor = User::where('is_doctor',1)->where('id',$id)->first();
+            //    $my_doctor = User::where('id', $user->doctor_id)->first();
+                return response()->json(['status' => true, 'doctor' => $doctor,'my_doctor'=>$my_doctor], 200);
+            } else {
+                $message = "Please Login first!";
+                return response()->json(["status" => true, "message" => $message], 201);
+            }
+        }
+
+    }
+    public function getProductList(Request $rquest,$id){
+        
+
+        $access_token = $request->header('Authorization');
+        if (empty($access_token)) {
+            $message = "User token is missing in Api header!";
+            return response()->json(["status" => false, "message" => $message], 422);
+        } else {
+            $access_token = str_replace("Bearer ", "", $access_token);
+            $userCount = User::where('access_token', $access_token)->count();
+
+            if ($userCount > 0) {
+                $user = User::where('access_token', $access_token)->first();
+               $product_list = Product::all();
+               $doctor = User::where('is_doctor',1)->where('id',$id)->first();
+            //    $my_doctor = User::where('id', $user->doctor_id)->first();
+                return response()->json(['status' => true, 'product_list' => $product_list], 200);
+            } else {
+                $message = "Please Login first!";
+                return response()->json(["status" => true, "message" => $message], 201);
+            }
+        }
+
     }
 
     /**
