@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Product;
@@ -19,8 +20,8 @@ class AuthController extends Controller
      */
     public function userRegister(Request $request)
     {
-        // log::info($request->all());
-        
+        Log::info($request->all());
+
         if ($request->isMethod('POST')) {
             $data = $request->all();
             $rules = [
@@ -28,7 +29,7 @@ class AuthController extends Controller
                 "last_name" => "required",
                 "phone" => "required|min:10|max:10",
                 "email" => "required|unique:users",
-                "password" => "required"
+                "password" => "required",
             ];
 
             $customMessage = [
@@ -44,11 +45,25 @@ class AuthController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 422);
             } else {
+                // Assuming you have the values of feet and inches
+                $feet = $data['feet'];
+                $inch = $data['inch'];
+
+                // Calculate height in inches
+                $heightInInches = $feet * 12 + $inch;
+
+
                 $user = new User;
                 $user->first_name = $data['first_name'];
                 $user->last_name = $data['last_name'];
                 $user->phone = $data['phone'];
                 $user->email = $data['email'];
+                $user->gender = $data['gender'];
+                $user->height = $heightInInches;
+                $user->weight = $data['weight'];
+                $user->is_user = 1;
+                $user->date_of_birth = $data['dob'];
+                $user->goal = $data['goal'];
                 $user->password = Hash::make($data['password']);
                 $user->save();
 
@@ -182,9 +197,9 @@ class AuthController extends Controller
 
             if ($userCount > 0) {
                 $user = User::where('access_token', $access_token)->first();
-               $doctor_list = User::where('is_dietician',1)->select('first_name','last_name','email','phone')->get();
-               $my_doctor = User::where('id', $user->doctor_id)->first();
-                return response()->json(['status' => true, 'doctor_list' => $doctor_list,'my_doctor'=>$my_doctor], 200);
+                $doctor_list = User::where('is_dietician', 1)->select('id', 'first_name', 'last_name', 'email', 'phone')->get();
+                $my_doctor = User::where('id', $user->doctor_id)->first();
+                return response()->json(['status' => true, 'doctor_list' => $doctor_list, 'my_doctor' => $my_doctor], 200);
             } else {
                 $message = "Please Login first!";
                 return response()->json(["status" => true, "message" => $message], 201);
@@ -192,8 +207,12 @@ class AuthController extends Controller
         }
     }
 
-    public function getDoctor(Request $rquest,$id){
-        
+    public function getDoctor(Request $request, $id)
+    {
+
+        Log::info('getting doctor indo');
+        Log::info($request->all());
+        Log::info($id);
 
         $access_token = $request->header('Authorization');
         if (empty($access_token)) {
@@ -205,19 +224,19 @@ class AuthController extends Controller
 
             if ($userCount > 0) {
                 $user = User::where('access_token', $access_token)->first();
-               $doctor_list = User::where('is_dietician',1)->select('id','first_name','last_name','email','phone')->get();
-               $doctor = User::where('is_doctor',1)->where('id',$id)->first();
-            //    $my_doctor = User::where('id', $user->doctor_id)->first();
-                return response()->json(['status' => true, 'doctor' => $doctor,'my_doctor'=>$my_doctor], 200);
+                $doctor_list = User::where('is_dietician', 1)->select('id', 'first_name', 'last_name', 'email', 'phone')->get();
+                $doctor = User::where('is_dietician', 1)->where('id', $id)->first();
+                //    $my_doctor = User::where('id', $user->doctor_id)->first();
+                return response()->json(['status' => true, 'doctor' => $doctor], 200);
             } else {
                 $message = "Please Login first!";
                 return response()->json(["status" => true, "message" => $message], 201);
             }
         }
-
     }
-    public function getProductList(Request $rquest,$id){
-        
+    public function getProductList(Request $rquest, $id)
+    {
+
 
         $access_token = $request->header('Authorization');
         if (empty($access_token)) {
@@ -229,16 +248,15 @@ class AuthController extends Controller
 
             if ($userCount > 0) {
                 $user = User::where('access_token', $access_token)->first();
-               $product_list = Product::all();
-               $doctor = User::where('is_doctor',1)->where('id',$id)->first();
-            //    $my_doctor = User::where('id', $user->doctor_id)->first();
+                $product_list = Product::all();
+                $doctor = User::where('is_doctor', 1)->where('id', $id)->first();
+                //    $my_doctor = User::where('id', $user->doctor_id)->first();
                 return response()->json(['status' => true, 'product_list' => $product_list], 200);
             } else {
                 $message = "Please Login first!";
                 return response()->json(["status" => true, "message" => $message], 201);
             }
         }
-
     }
 
     /**
@@ -250,5 +268,24 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getProfile(Request $request){
+        $access_token = $request->header('Authorization');
+        if (empty($access_token)) {
+            $message = "User token is missing in Api header!";
+            return response()->json(["status" => false, "message" => $message], 422);
+        } else {
+            $access_token = str_replace("Bearer ", "", $access_token);
+            $userCount = User::where('access_token', $access_token)->count();
+
+            if ($userCount > 0) {
+                $user = User::where('access_token', $access_token)->first();
+                   $my_doctor = User::where('id', $user->doctor_id)->first();
+                return response()->json(['status' => true, 'user' => $user, 'my_doctor' => $my_doctor], 200);
+            } else {
+                $message = "Please Login first!";
+                return response()->json(["status" => true, "message" => $message], 201);
+            }
+        }
     }
 }

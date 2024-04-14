@@ -25,18 +25,20 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'gender',
         'height',
-        'heightweight',
+        'weight',
+        'ddate_of_birth',
         'goal',
         'doctor_id',
         'routine',
-        'mediacal_history',
+        'medical_history',
         'allergens',
         'password',
         'phone',
         'is_super_admin',
         'is_dietician',
         'is_user',
-
+        'qualification',
+        'experience'
     ];
 
     /**

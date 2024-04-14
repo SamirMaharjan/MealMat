@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
+Route::get('/getProfile', [AuthController::class, 'getProfile']);
 Route::get('/getDoctor/{id}', [AuthController::class, 'getDoctor']);
 Route::get('/getProductList', [AuthController::class, 'getProductList']);
 Route::post('/user/register', [AuthController::class, 'userRegister']);
